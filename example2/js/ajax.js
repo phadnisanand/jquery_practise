@@ -12,7 +12,7 @@ $(document).ready(function(){
         data: { data:myJSON },
         type: 'post',
       }).done(function(data) {
-        arr = $.parseJSON(data); 
+        arr = JSON.parse(data); 
         let ele = `<ul>`;
         $.each(arr, function (key, val) {
             ele+= `<li>${key} - ${val}</li>`
