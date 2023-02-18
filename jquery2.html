@@ -1,19 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script type = "text/javascript" src = "https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
   $("button").click(function(){
-    $.ajax({url: "https://jsonplaceholder.typicode.com/posts111", success: function(result){
-      $.each (result, function( index, value ) {
-        console.log( value);
-        let ele = `<ul><li> ${value.id}</li>
-        <li> ${value.title}</li>
-        <li> ${value.body}</li></ul>`;
-        $("#div1").append(ele);
-      });
-    }});
+
+   var ajxReq = $.ajax("https://jsonplaceholder.typicode.com/posts");
+
+
+  ajxReq.success(function(data, status, jqXhr ){
+        $.each (data, function( index, value ) {
+          let ele = `<ul><li> ${value.id}</li>
+          <li> ${value.title}</li>
+          <li> ${value.body}</li></ul>`;
+          $("#div1").append(ele);
+        });
+   });
+
+
+    ajxReq.fail(function(xhr, textStatus, errorThrown){
+       alert('request failed');
+    });
   });
 });
 </script>
